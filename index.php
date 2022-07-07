@@ -7,7 +7,9 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 //Require Models
+require 'Models/DataSource.php';
 require 'Models/User.php';
+
 
 //Require Controllers
 require 'Controllers/HomeController.php';
