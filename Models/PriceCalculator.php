@@ -10,9 +10,9 @@ public function __construct(array $dataRow){
     
 }
 
-public function printUserGroupId(){
+public function getUserGroupId(){
 
-    var_dump($this->user->getGroupId());
+    return $this->user->getGroupId();
         
 }
 

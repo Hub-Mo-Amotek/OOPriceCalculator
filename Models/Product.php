@@ -14,4 +14,5 @@ class Product {
         $this->price = $dataRow['price'];
 
     }
+
 }

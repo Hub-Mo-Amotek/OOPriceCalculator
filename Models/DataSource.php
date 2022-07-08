@@ -43,10 +43,10 @@ class DataSource {
 
         $allProducts = [];
 
-        $sql = "SELECT id, name FROM Product";
+        $sql = "SELECT id, name, price FROM Product";
         $query = $dbh->query($sql);
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            $object = (object)array('id' => $row['id'], 'name' => $row['name']);
+            $object = (object)array('id' => $row['id'], 'name' => $row['name'], 'price' => $row['price']);
 
             array_push($allProducts, $object);
         }
@@ -55,20 +55,26 @@ class DataSource {
 
     }
 
+    public function retrieveGroup($group_id){
+
+        $dbh = $this->connect();
+
+        $sql = "SELECT * FROM Customer_group WHERE id=" . $group_id . " LIMIT 1";
+        $query = $dbh->query($sql);
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+
+    }
+
 
     public function retrieveCustomer($id){
 
         $dbh = $this->connect();
 
-        $responseArray = [];
-
-        $sql = "SELECT * FROM Customer WHERE id=" . $id;
+        $sql = "SELECT * FROM Customer WHERE id=" . $id . " LIMIT 1";
         $query = $dbh->query($sql);
-        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            array_push($responseArray, $row);
-        }
 
-        return $responseArray;
+        return $query->fetch(PDO::FETCH_ASSOC);
 
     }
 }
