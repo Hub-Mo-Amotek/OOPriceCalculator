@@ -9,10 +9,18 @@ class HomeController {
         $customerNames = $dataSource->retrieveAllCustomerNames();
         $productNames = $dataSource->retrieveAllProducts();
 
+        
         if(isset($_POST['submit'])){
 
-            echo 'form submitted';
+            if($_POST['customerId'] !== 'Choose one' && $_POST['productId'] !== 'Choose Product'){
 
+                $customerId = $dataSource->retrieveCustomer($_POST['customerId'])[0];
+                $priceCalculator = new priceCalculator($customerId);
+
+                $priceCalculator->printUserGroupId();
+
+            }
+            
         }
 
         require 'Views/home.php';
