@@ -1,51 +1,31 @@
 <?php
 
-class User extends DataSource{
+class User {
 
-private string $name;
-private string $surname;
+    private int $id;
+    private string $firstName;
+    private string $lastName;
+    private int $groupId;
+    private $fixed_discount;
+    private $variable_discount;
+    
+    public function __construct(array $dataRow){
 
-public function __construct(string $name, string $surname){
+        $this->id = $dataRow['id'];
+        $this->firstName = $dataRow['firstname'];
+        $this->lastName = $dataRow['lastname'];
+        $this->groupId = $dataRow['group_id'];
+        $this->fixed_discount = $dataRow['fixed_discount'];
+        $this->variable_discount = $dataRow['variable_discount'];
 
-    $this->name = $name;
-    $this->surname = $surname;
-
-}
-
-public function retrieveCustomers(){
-
-    $responseArray = [];
-
-    $dbh = $this->connect();
-
-    $sql = "SELECT * FROM Customer WHERE group_id < 10";
-
-    $query = $dbh->query($sql);
-
-    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-        array_push($responseArray, $row);
     }
 
-    return $responseArray;
+    public function calculatePrice(Product $product){
 
-}
-
-public function retrieveGroupId(){
-
-    $responseArray = [];
-
-    $dbh = $this->connect();
-
-    $sql = "SELECT group_id FROM Customer WHERE firstname='Peg'";
-
-    $query = $dbh->query($sql);
-
-    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-        array_push($responseArray, $row);
+        //calculate
+            
     }
 
-    return $responseArray;
 
-}
 
 }
