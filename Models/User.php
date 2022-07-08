@@ -20,12 +20,14 @@ class User {
 
     }
 
-    public function calculatePrice(Product $product){
+    public function getGroupId(){
 
-        //calculate
+        return $this->groupId;
             
     }
 
 
 
 }
+
+
