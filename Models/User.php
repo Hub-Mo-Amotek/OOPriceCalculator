@@ -1,23 +1,31 @@
 <?php
 
-class User extends DataSource{
+class User {
 
-public function retrieveCustomerNames(){
+    private int $id;
+    private string $firstName;
+    private string $lastName;
+    private int $groupId;
+    private $fixed_discount;
+    private $variable_discount;
+    
+    public function __construct(array $dataRow){
 
-    $responseArray = [];
+        $this->id = $dataRow['id'];
+        $this->firstName = $dataRow['firstname'];
+        $this->lastName = $dataRow['lastname'];
+        $this->groupId = $dataRow['group_id'];
+        $this->fixed_discount = $dataRow['fixed_discount'];
+        $this->variable_discount = $dataRow['variable_discount'];
 
-    $dbh = $this->connect();
-
-    $sql = "SELECT firstname, lastname FROM Customer";
-
-    $query = $dbh->query($sql);
-
-    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-        array_push($responseArray, $row);
     }
 
-    return $responseArray;
+    public function calculatePrice(Product $product){
 
-}
+        //calculate
+            
+    }
+
+
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-abstract class DataSource {
+class DataSource {
 
     public function connect() {
 
@@ -18,5 +18,22 @@ abstract class DataSource {
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
+    }
+
+
+    public function retrieveCustomer($id){
+
+        $dbh = $this->connect();
+
+        $responseArray = [];
+
+        $sql = "SELECT * FROM Customer WHERE id=" . $id;
+        $query = $dbh->query($sql);
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            array_push($responseArray, $row);
+        }
+
+        return $responseArray;
+
     }
 }
