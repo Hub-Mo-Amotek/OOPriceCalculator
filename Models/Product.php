@@ -1,22 +1,17 @@
 <?php
 
-class Product extends DataSource{
+class Product {
+
+    private int $id;
+    private string $name;
+    private int $price;
 
 
-    public function retrieveProducts(){
+    public function __construct(array $dataRow){
 
-        $productsArray = [];
+        $this->id = $dataRow['id'];
+        $this->name = $dataRow['name'];
+        $this->price = $dataRow['price'];
 
-        $dbh = $this->connect();
-
-        $sql = "SELECT name FROM Product";
-
-        $query = $dbh->query($sql);
-
-        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            array_push($productsArray, $row);
-        }
-
-        return $productsArray;
-}
+    }
 }
