@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 include 'Views/include/header.php';
-$dummyArray = ['Mo El', 'Lucas S', 'Michael Monteiro', 'Hello names', 'hello planet']
 ?>
 
 <div class="dropdown">
@@ -14,14 +13,30 @@ $dummyArray = ['Mo El', 'Lucas S', 'Michael Monteiro', 'Hello names', 'hello pla
     >
         Dropdown button
     </button>
-    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+    //<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
     <?php
-        foreach($dummyArray as $name){
-            echo "<li><a class='dropdown-item active' href='#' value='$name'>".$name."</a></li>";
-        }
+    //$dummyArray = ['Mo El', 'Lucas S', 'Michael Monteiro', 'Hello names', 'hello planet'];
+    //    foreach($dummyArray as $name){
+    //        echo "<li value='$name' ><a class='dropdown-item' href='#'>".$name."</a></li>";
+    //    }
     ?>
     </ul>
+
 </div>
+<form method="post">
+    <select>
+        <option selected="selected">Choose one</option>
+        <?php
+        // A sample product array
+        $products = array("Michael", "Mo", "Lucas", "User");
+        // Iterating through the product array
+        foreach($products as $item){
+            echo "<option value='strtolower($item)'>$item</option>";
+        }
+        ?>
+    </select>
+    <input type="submit" value="Submit">
+</form>
 
 <?php
 include 'Views/include/footer.php';
