@@ -20,6 +20,24 @@ class DataSource {
         }
     }
 
+    public function retrieveAllCustomerNames(){
+
+        $dbh = $this->connect();
+
+        $allCustomerNames = [];
+
+        $sql = "SELECT id, firstname, lastname FROM Customer";
+        $query = $dbh->query($sql);
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $object = (object)array('id' => $row['id'], 'name' => $row['firstname'] . " " . $row['lastname']);
+
+            array_push($allCustomerNames, $object);
+        }
+
+        return $allCustomerNames;
+
+    }
+
 
     public function retrieveCustomer($id){
 
