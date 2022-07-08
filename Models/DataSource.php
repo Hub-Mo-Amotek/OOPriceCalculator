@@ -66,6 +66,22 @@ class DataSource {
 
     }
 
+    public function retrieveAllRelatedGroups($group_id){
+
+        $allRelatedGroups = [];
+
+        $newId = $group_id;
+
+        do{
+            $group = $this->retrieveGroup($newId);
+            array_push($allRelatedGroups, $group);
+            $newId = $group['parent_id'];
+        }
+        while($newId);
+
+        return $allRelatedGroups;
+    }
+
 
     public function retrieveCustomer($id){
 
