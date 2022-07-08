@@ -4,7 +4,7 @@ include 'Views/include/header.php';
 ?>
 
 <div class="container d-flex justify-content-center">
-    <form method="post" name="page">
+    <form method="post">
         <select>
             <option selected="selected">Choose one</option>
             <?php
@@ -25,7 +25,7 @@ include 'Views/include/header.php';
             }
             ?>
         </select>
-        <button type="submit" value="Submit">Calculate</button>
+        <button type="submit" value="Submit" name="submit">Calculate</button>
     </form>
 
 </div>
