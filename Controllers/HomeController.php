@@ -13,11 +13,14 @@ class HomeController {
             if($_POST['customerId'] !== 'Choose one' && $_POST['productId'] !== 'Choose Product'){
 
                 $customerId = $dataSource->retrieveCustomer($_POST['customerId']);
-                $priceCalculator = new priceCalculator($customerId);
+                $allRelatedGroups = $dataSource->retrieveAllRelatedGroups($customerId['group_id']);
 
-                $test = $dataSource->retrieveGroup($priceCalculator->getUserGroupId());
-                var_dump($test);
+                $priceCalculator = new priceCalculator($customerId, $allRelatedGroups);
 
+                $priceCalculator->getAllFixedDiscounts();
+                $priceCalculator->getHighestVariableDiscounts();
+
+            
             }
             
         }
