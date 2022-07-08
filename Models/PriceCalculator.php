@@ -32,11 +32,12 @@ public function getHighestVariableDiscounts(){
 
     foreach($this->groups as $item ){
         
-    if($item['variable_discount'] > $highestVariable)
-     $highestVariable = $item['variable_discount'];
+        if($item['variable_discount'] > $highestVariable) {
+            $highestVariable = $item['variable_discount'];
 
+        }
     }
-
+    
     return $highestVariable;
         
 }
