@@ -7,8 +7,7 @@ class HomeController {
 
         $dataSource = new DataSource();
         $customerNames = $dataSource->retrieveAllCustomerNames();
-
-        var_dump($customerNames);
+        $productNames = $dataSource->retrieveAllProducts();
 
         require 'Views/home.php';
 
