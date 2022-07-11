@@ -22,10 +22,8 @@ include 'Views/include/header.php';
             // Iterating through the product array
             foreach($productNames as $item){
 
-                echo "<option value='$item->id'>$item->name - $ $item->price </option>";
-
                 $price = $item->price / 100;
-                echo "<option value='strtolower($item->id)'>$item->name - $ $price</option>";
+                echo "<option value='$item->id'>$item->name - $ $price</option>";
 
             }
             ?>
