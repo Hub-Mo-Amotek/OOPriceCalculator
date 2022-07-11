@@ -48,19 +48,25 @@ class priceCalculator
 
     }
 
-    public function getCompareFixedWithVariableCustomerGroupDiscounts()
+    public function findBetterDiscount()
     {
-        $fixedResult = $this->getAllFixedDiscounts();
-        $variableResult = $this->getHighestVariableDiscounts();
 
+        $productPrice = $this->product->getProductPrice();
+        $groupHighestVariable = $this->getHighestVariableDiscounts();
+        $groupTotalFixed = $this->getAllFixedDiscounts();
 
-        $getProductPrice = $this->product->getProductPrice();
-        if($fixedResult/$getProductPrice > $variableResult/$getProductPrice){
+        if($productPrice - $groupTotalFixed > $productPrice - ($productPrice / 100 * $groupHighestVariable)){
 
-            return max($fixedResult, $variableResult);
+            return $groupHighestVariable;
+
+        } elseif($productPrice - $groupTotalFixed < $productPrice - ($productPrice / 100 * $groupHighestVariable)){
+
+            return $groupTotalFixed;
+
         }
-    }
 
+    }
+    
     public function getHighestFixedDiscountCustomer()
     {
         $compareFixedDiscount = $this->getAllFixedDiscounts();
@@ -69,6 +75,40 @@ class priceCalculator
         } else {
             return $compareFixedDiscount;
         }
+    }
+
+    public function finalCalculation()
+    {
+
+        $productPrice = $this->product->getProductPrice();
+        $betterDiscount = $this->findBetterDiscount();
+
+        $finalPriceGroups = $productPrice - $betterDiscount;
+        $finalPriceCustomerFixed = $productPrice - $this->user->getFixedDiscount();
+        $finalPriceCustomerVariable = $productPrice - $this->user->getVariableDiscount();
+
+        var_dump($finalPriceGroups);
+        var_dump($finalPriceCustomerFixed);
+        var_dump($finalPriceCustomerVariable);
+
+        if($finalPriceGroups < 0 || $finalPriceCustomerFixed < 0 || $finalPriceCustomerVariable < 0){
+
+            return 'ITS FREE!';
+
+        } elseif($finalPriceGroups < $finalPriceCustomerFixed && $finalPriceGroups < $finalPriceCustomerVariable){
+
+            return $finalPriceGroups;
+
+        } elseif($finalPriceCustomerFixed < $finalPriceGroups && $finalPriceCustomerFixed < $finalPriceCustomerVariable){
+
+            return $finalPriceCustomerFixed;
+
+        } elseif($finalPriceCustomerVariable < $finalPriceGroups && $finalPriceCustomerVariable < $finalPriceCustomerFixed){
+
+            return $finalPriceCustomerVariable;
+
+        }
+
     }
 }
 
