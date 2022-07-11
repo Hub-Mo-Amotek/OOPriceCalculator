@@ -21,12 +21,8 @@ class HomeController {
 
                 $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId);
 
-                $priceCalculator->getAllFixedDiscounts();
-                $priceCalculator->getHighestVariableDiscounts();
-                $test = $priceCalculator->getHighestFixedDiscountCustomer();
-                $test2 = $priceCalculator->getCompareFixedWithVariableCustomerGroupDiscounts();
-
-                var_dump($test2);
+                $finalPrice = $priceCalculator->finalCalculation(); 
+                var_dump($finalPrice);        
             
             }
             
