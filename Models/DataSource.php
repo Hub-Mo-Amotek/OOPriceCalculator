@@ -91,6 +91,15 @@ class DataSource {
         $query = $dbh->query($sql);
 
         return $query->fetch(PDO::FETCH_ASSOC);
+    }
 
+    public function retrieveProduct($id){
+
+        $dbh = $this->connect();
+
+        $sql = "SELECT * FROM product WHERE id=" . $id . " LIMIT 1";
+        $query = $dbh->query($sql);
+
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 }

@@ -7,12 +7,15 @@ class Product {
     private int $price;
 
 
-    public function __construct(array $dataRow){
+    public function __construct(array $productDataRow){
 
-        $this->id = $dataRow['id'];
-        $this->name = $dataRow['name'];
-        $this->price = $dataRow['price'];
+        $this->id = $productDataRow['id'];
+        $this->name = $productDataRow['name'];
+        $this->price = $productDataRow['price'];
 
     }
 
+    public function getProductPrice(){
+        return $this->price;
+    }
 }

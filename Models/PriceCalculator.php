@@ -1,43 +1,79 @@
 <?php
 
-class priceCalculator {
+class priceCalculator
+{
 
-private User $user;
+    private User $user;
+    private Product $product;
 
-public function __construct(array $dataRow, array $related_groups){
+    public function __construct(array $dataRow, array $related_groups, array $productDataRow)
+    {
 
-    $this->user = new User($dataRow, $related_groups);
-    
-}
-
-public function getAllFixedDiscounts(){
-
-    $totalFixed = 0;
-
-    foreach($this->user->getRelatedGroups() as $item ){
-
-     $totalFixed += $item['fixed_discount'];
+        $this->user = new User($dataRow, $related_groups);
+        $this->product = new Product($productDataRow);
 
     }
 
-    return $totalFixed;
-        
-}
+    // STEP 1: For the customer group: In case of variable discounts look for highest discount of all the groups the user has.
+    // STEP 2: If some groups have fixed discounts, count them all up.
+    public function getAllFixedDiscounts()
+    {
 
-public function getHighestVariableDiscounts(){
+        $totalFixed = 0;
 
-    $highestVariable = 0;
+        foreach ($this->user->getRelatedGroups() as $item) {
 
-    foreach($this->user->getRelatedGroups() as $item ){
-        
-        if($item['variable_discount'] > $highestVariable) {
-            $highestVariable = $item['variable_discount'];
+            $totalFixed += $item['fixed_discount'];
 
+        }
+
+        return $totalFixed;
+
+    }
+
+    public function getHighestVariableDiscounts()
+    {
+
+        $highestVariable = 0;
+
+        foreach ($this->user->getRelatedGroups() as $item) {
+
+            if ($item['variable_discount'] > $highestVariable) {
+                $highestVariable = $item['variable_discount'];
+
+            }
+        }
+
+        return $highestVariable;
+
+    }
+
+    public function getCompareFixedWithVariableCustomerGroupDiscounts()
+    {
+        $fixedResult = $this->getAllFixedDiscounts();
+        $variableResult = $this->getHighestVariableDiscounts();
+
+
+        $getProductPrice = $this->product->getProductPrice();
+        if($getProductPrice/$fixedResult > $getProductPrice/$variableResult){
+
+            return max($fixedResult, $variableResult);
         }
     }
 
-    return $highestVariable;
-        
+    public function getHighestFixedDiscountCustomer()
+    {
+        $compareFixedDiscount = $this->getAllFixedDiscounts();
+        if ($this->user->getFixedDiscount() > $compareFixedDiscount) {
+            return $this->user->getFixedDiscount();
+        } else {
+            return $compareFixedDiscount;
+        }
+    }
 }
 
-}
+
+
+
+
+
