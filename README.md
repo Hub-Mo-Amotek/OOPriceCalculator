@@ -57,6 +57,21 @@ retrieving all the related groups:
     }
 ````
 * [x] Look which discount (fixed or variable) will give the customer the most value.
+````
+    public function getCompareFixedWithVariableCustomerGroupDiscounts()
+    {
+        $fixedResult = $this->getAllFixedDiscounts();
+        $variableResult = $this->getHighestVariableDiscounts();
+
+
+        $getProductPrice = $this->product->getProductPrice();
+        if($fixedResult/$getProductPrice > $variableResult/$getProductPrice){
+
+            return max($fixedResult, $variableResult);
+        }
+    }
+
+````
 * [x] Now look at the discount of the customer.
 * [] In case both customer and customer group have a percentage, take the largest percentage.
 * [] First subtract fixed amounts, then percentages!
