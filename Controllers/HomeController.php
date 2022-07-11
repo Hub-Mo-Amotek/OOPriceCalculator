@@ -26,7 +26,6 @@ class HomeController {
                 $test = $priceCalculator->getHighestFixedDiscountCustomer();
                 $test2 = $priceCalculator->getCompareFixedWithVariableCustomerGroupDiscounts();
 
-                var_dump($test2);
             
             }
             

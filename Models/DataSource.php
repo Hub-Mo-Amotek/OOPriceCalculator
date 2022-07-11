@@ -97,7 +97,7 @@ class DataSource {
 
         $dbh = $this->connect();
 
-        $sql = "SELECT * FROM product WHERE id=" . $id . " LIMIT 1";
+        $sql = "SELECT * FROM Product WHERE id=" . $id . " LIMIT 1";
         $query = $dbh->query($sql);
 
         return $query->fetch(PDO::FETCH_ASSOC);
