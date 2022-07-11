@@ -12,7 +12,7 @@ making repo, adding contributor. making a file structure(MVC) etc.
 >day 2 : added .env file to get acces to data base. connected to the database
 > executed some tests. made dropdowns with all the customers and products in the home View.
 
-![](images/Schermafbeelding 2022-07-11 om 11.01.09.png)
+![](images/Schermafbeelding.png)
 
 >day 3 : started to add the logic. 
 
