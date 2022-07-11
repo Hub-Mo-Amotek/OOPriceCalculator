@@ -73,6 +73,17 @@ retrieving all the related groups:
 
 ````
 * [x] Now look at the discount of the customer.
+`````
+    public function getHighestFixedDiscountCustomer()
+    {
+        $compareFixedDiscount = $this->getAllFixedDiscounts();
+        if ($this->user->getFixedDiscount() > $compareFixedDiscount) {
+            return $this->user->getFixedDiscount();
+        } else {
+            return $compareFixedDiscount;
+        }
+    }
+`````
 * [] In case both customer and customer group have a percentage, take the largest percentage.
 * [] First subtract fixed amounts, then percentages!
      A price can never be negative.
