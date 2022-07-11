@@ -18,12 +18,9 @@ class HomeController {
                 $productId = $dataSource->retrieveProduct($_POST['productId']);
                 $allRelatedGroups = $dataSource->retrieveAllRelatedGroups($customerId['group_id']);
 
-
-                $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId);
-
-                $finalPrice = $priceCalculator->finalCalculation(); 
-                var_dump($finalPrice);        
-
+                $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId);    
+                
+                $priceCalculator->findBetterDiscount();
 
             }
             
