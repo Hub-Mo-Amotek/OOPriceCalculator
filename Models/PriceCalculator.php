@@ -55,7 +55,7 @@ class priceCalculator
 
 
         $getProductPrice = $this->product->getProductPrice();
-        if($getProductPrice/$fixedResult > $getProductPrice/$variableResult){
+        if($fixedResult/$getProductPrice > $variableResult/$getProductPrice){
 
             return max($fixedResult, $variableResult);
         }
