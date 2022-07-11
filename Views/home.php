@@ -4,28 +4,33 @@ include 'Views/include/header.php';
 ?>
 
 <div class="container d-flex justify-content-center">
-    <form method="post" name="page">
-        <select>
+    <form method="post">
+        <select name='customerId'>
             <option selected="selected">Choose one</option>
             <?php
             // A sample product array
             // Iterating through the product array
             foreach($customerNames as $item){
-                echo "<option value='strtolower($item->id)'>$item->name</option>";
+                echo "<option value='$item->id'>$item->name</option>";
             }
             ?>
         </select>
-        <select>
+        <select name='productId'>
             <option selected="selected">Choose Product</option>
             <?php
             // A sample product array
             // Iterating through the product array
             foreach($productNames as $item){
-                echo "<option value='strtolower($item->id)'>$item->name</option>";
+
+
+
+                $price = $item->price / 100;
+                echo "<option value='$item->id'>$item->name - $ $price</option>";
+
             }
             ?>
         </select>
-        <button type="submit" value="Submit">Calculate</button>
+        <button type="submit" value="Submit" name="submit">Calculate</button>
     </form>
 
 </div>

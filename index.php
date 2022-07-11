@@ -12,6 +12,8 @@ require 'Models/DataSource.php';
 require 'Models/User.php';
 require 'Models/Product.php';
 
+require 'Models/PriceCalculator.php';
+
 //Require Controllers
 require 'Controllers/HomeController.php';
 
