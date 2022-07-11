@@ -22,19 +22,25 @@ class User {
 
     }
 
-    public function getGroupId(){
-
+    public function getGroupId()
+    {
         return $this->groupId;
-            
     }
 
-    public function getRelatedGroups(){
-
+    public function getRelatedGroups()
+    {
         return $this->related_groups;
-
     }
 
+    public function getFixedDiscount()
+    {
+        return $this->fixed_discount;
+    }
 
+    public function getVariableDiscount()
+    {
+        return $this->variable_discount;
+    }
 
 }
 

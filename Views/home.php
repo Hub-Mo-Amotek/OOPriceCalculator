@@ -21,8 +21,12 @@ include 'Views/include/header.php';
             // A sample product array
             // Iterating through the product array
             foreach($productNames as $item){
+
+
+
                 $price = $item->price / 100;
-                echo "<option value='strtolower($item->id)'>$item->name - $ $price</option>";
+                echo "<option value='$item->id'>$item->name - $ $price</option>";
+
             }
             ?>
         </select>
