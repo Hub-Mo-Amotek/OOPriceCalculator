@@ -59,9 +59,13 @@ class priceCalculator
                 $highestDiscountVariable = $this->user->getVariableDiscount();
             }
 
-            $discountableFixed = $this->getAllFixedDiscounts();
-            $priceWithFixedDiscount = $productPrice - $discountableFixed;
-            
+            $highestDiscountFixed = $this->getAllFixedDiscounts();
+            if($highestDiscountFixed < $this->user->getFixedDiscount()){
+                $highestDiscountFixed = $this->user->getFixedDiscount();
+            }
+
+            $priceWithFixedDiscount = $productPrice - $highestDiscountFixed;
+
             var_dump(round($priceWithFixedDiscount - $priceWithFixedDiscount * $highestDiscountVariable / 100 ));
             return round($priceWithFixedDiscount - $priceWithFixedDiscount * $highestDiscountVariable / 100 );
 

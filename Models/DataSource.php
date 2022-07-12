@@ -2,7 +2,7 @@
 
 class DataSource {
 
-    public function connect() {
+    private function connect() {
 
         $servername = $_ENV['MySQL_DB_HOST'];
         $username = $_ENV['MySQL_DB_USER_NAME'];
