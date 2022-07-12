@@ -42,6 +42,8 @@ class User {
         return $this->variable_discount;
     }
 
+    
+
 }
 
 
