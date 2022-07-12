@@ -20,7 +20,7 @@ class HomeController {
 
                 $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId);    
                 
-                $priceCalculator->findBetterDiscount();
+                $priceCalculator->finalCalculation();
 
             }
             
