@@ -80,24 +80,30 @@ class priceCalculator
     {
         //TODO: with the info we have, make the right calculations
         //Now look at the discount of the customer.
+$finalPrice = 0;
+
         $productPrice = ($this->product->getProductPrice() / 100);
         if ($this->user->getFixedDiscount()) {
             $firstFixed = $productPrice - $this->user->getFixedDiscount();
             $finalPrice = $firstFixed - $this->findBetterDiscount();
-            return round($finalPrice);
+            $finalPrice = round($finalPrice);
         }else {
             $finalVariableGroupsDiscount = round($this->findBetterDiscount());
-            return round($productPrice - $this->findBetterDiscount());
+            $finalPrice = round($productPrice - $this->findBetterDiscount());
         }
 
-        //$finalFixedDiscount = round(($this->product->getProductPrice() / 100) - $this->user->getFixedDiscount());
-        //$finalVariableDiscount = round(($this->product->getProductPrice() / 100)) - round((($this->product->getProductPrice() / 100) * $this->user->getVariableDiscount()) / 100);
+        if($finalPrice < 0) {
+            $finalPrice = 0;
+        }
+        
+        return $finalPrice * $this->quantity->getQuantity();
 
     }
 
     public function getBaseInfo(){
 
-        //$customerName = $this->user->
+        $customerName = $this->user->getFullName();
+        $productName = $this->product->getName();
 
         $baseProductPrice = $this->product->getProductPrice() / 100;
         $quantity = $this->quantity->getQuantity();
@@ -110,7 +116,7 @@ class priceCalculator
 
 
 
-        $baseInfo = ["baseProductPrice" => $baseProductPrice, "quantity" => $quantity, "customerFixed" => $customerFixed, "customerVariable" => $customerVariable, "totalGroupFixed" => $totalGroupFixed, "highestGroupVariable" => $highestGroupVariable];
+        $baseInfo = ["baseProductPrice" => $baseProductPrice, "quantity" => $quantity, "customerFixed" => $customerFixed, "customerVariable" => $customerVariable, "totalGroupFixed" => $totalGroupFixed, "highestGroupVariable" => $highestGroupVariable, "customerName" => $customerName, "productName" => $productName];
         foreach($baseInfo as $key => $info){
             if(!$info){
                 $baseInfo[$key] = "N/A";

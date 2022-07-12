@@ -22,6 +22,18 @@ class User {
 
     }
 
+    public function getId(){
+
+        return $this->id;
+
+    }
+
+    public function getFullName(){
+
+        return $this->firstName . ' ' . $this->lastName;
+
+    }
+
     public function getGroupId()
     {
         return $this->groupId;

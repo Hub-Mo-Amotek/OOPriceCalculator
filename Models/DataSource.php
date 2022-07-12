@@ -25,12 +25,11 @@ class DataSource {
 
         $allCustomerNames = [];
 
-        $sql = "SELECT id, firstname, lastname FROM Customer";
+        $sql = "SELECT * FROM Customer";
         $query = $dbh->query($sql);
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            $object = (object)array('id' => $row['id'], 'name' => $row['firstname'] . " " . $row['lastname']);
-
-            array_push($allCustomerNames, $object);
+            $user = new User($row, []);
+            array_push($allCustomerNames, $user);
         }
 
         return $allCustomerNames;
@@ -46,9 +45,8 @@ class DataSource {
         $sql = "SELECT id, name, price FROM Product";
         $query = $dbh->query($sql);
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            $object = (object)array('id' => $row['id'], 'name' => $row['name'], 'price' => $row['price']);
-
-            array_push($allProducts, $object);
+            $product = new Product($row);
+            array_push($allProducts, $product);
         }
 
         return $allProducts;
