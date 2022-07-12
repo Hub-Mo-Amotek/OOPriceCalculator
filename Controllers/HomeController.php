@@ -7,13 +7,11 @@ class HomeController {
         $dataSource = new DataSource();
         $customerNames = $dataSource->retrieveAllCustomerNames();
         $productNames = $dataSource->retrieveAllProducts();
-        //$customerGroup = new CustomerGroup();
-        //$fixedDiscount = $customerGroup->retrieveGroup();
 
         if(isset($POST['submit'])){
 
 
-            if($_POST['customerId'] !== 'Customer' && $_POST['productId'] !== 'Product' && $_POST['quantity'] !== 'Quantity'){
+            if($POST['customerId'] !== 'Customer' && $POST['productId'] !== 'Product' && $POST['quantity'] !== 'Quantity'){
 
                 $customerId = $dataSource->retrieveCustomer($POST['customerId']);
                 $productId = $dataSource->retrieveProduct($POST['productId']);
@@ -21,6 +19,11 @@ class HomeController {
                 $quantity = $_POST['quantity'];
 
                 $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId, $quantity);
+                
+                $baseInfo = $priceCalculator->getBaseInfo();
+
+                $priceCalculator->finalCalculation();
+
 
             }
             
