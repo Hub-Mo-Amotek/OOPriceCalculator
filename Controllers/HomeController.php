@@ -21,12 +21,9 @@ class HomeController {
 
                 $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId, $quantity);
                 
-<<<<<<< HEAD
                 $priceCalculator->finalCalculation();
-=======
                 $priceCalculator->findBetterDiscount();
                 var_dump($quantity);
->>>>>>> f1cbb9bb13b38f800dfeb099d91ea1b746f807f7
 
             }
             
