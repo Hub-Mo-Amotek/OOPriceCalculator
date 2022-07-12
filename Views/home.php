@@ -5,8 +5,8 @@ include 'Views/include/header.php';
 
 <?php
 
-$dummyInfo = ["productPrice" => 1234, "amount" => 5, "highestGroupVariable" => 32, "totalGroupFixed" => 32, "customerOwnVariable" => NULL, "customerOwnFixed" => 10, "finalPrice" => 251];
-var_dump($dummyInfo);
+// $dummyInfo = ["productPrice" => 1234, "amount" => 5, "highestGroupVariable" => 32, "totalGroupFixed" => 32, "customerOwnVariable" => NULL, "customerOwnFixed" => 10, "finalPrice" => 251];
+// var_dump($dummyInfo);
 
 ?>
 
@@ -54,7 +54,13 @@ var_dump($dummyInfo);
         </div>
     </form>
     
-    <?php include 'Views/calcTable.php' ?>
+    <?php 
+
+        if(isset($baseInfo)) {
+            include 'Views/calcTable.php' ;
+        } 
+            
+    ?>
 
 </div>
 <?php

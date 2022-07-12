@@ -13,10 +13,27 @@
             <tbody>
                 <tr>
                     <td>
+                        Customer Name
+                    </td>
+                    <td>
+                        <?php echo '$ ' . $baseInfo['baseProductPrice']; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Product Name
+                    </td>
+                    <td>
+                        <?php echo '$ ' . $baseInfo['baseProductPrice']; ?>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>
                         Base Price
                     </td>
                     <td>
-                        $ 1234
+                        <?php echo '$ ' . $baseInfo['baseProductPrice']; ?>
                     </td>
                 </tr>
                 <tr>
@@ -24,16 +41,15 @@
                         Quantity Bought
                     </td>
                     <td>
-                        6 units
-                    </td>
-                    
+                        <?php echo $baseInfo['quantity'] . ' units'; ?>
+                    </td>   
                 </tr>
                 <tr>
                     <td>
                         Customer Fixed Discount
                     </td>
                     <td>
-                        NULL
+                        <?php echo '$ ' . $baseInfo['customerFixed']; ?>
                     </td>
                 </tr>
                 <tr>
@@ -41,7 +57,7 @@
                         Customer Variable Discount
                     </td>
                     <td>
-                        23 %
+                        <?php echo '% ' . $baseInfo['customerVariable'];?>
                     </td>
                 </tr>
                 <tr>
@@ -49,7 +65,7 @@
                         Total Sum of Fixed Discounts from Groups
                     </td>
                     <td>
-                        21 
+                        <?php echo '$ ' . $baseInfo['totalGroupFixed']; ?>
                     </td>
                 </tr>
                 <tr>
@@ -57,7 +73,7 @@
                         Highest Variable from Groups
                     </td>
                     <td>
-                        48 %
+                        <?php echo '% ' . $baseInfo['highestGroupVariable']; ?>
                     </td>
                 </tr>
             </tbody>  
