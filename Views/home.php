@@ -15,6 +15,15 @@ include 'Views/include/header.php';
             }
             ?>
         </select>
+
+        <select name='quantity'>
+            <option selected="selected">Choose Product</option>
+            <?php
+            for($i=1;$i<=100;$i++)  {
+                echo "<option value='$i'>$i</option>";
+            } ?>
+        </select>
+
         <select name='productId'>
             <option selected="selected">Choose Product</option>
             <?php

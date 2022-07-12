@@ -12,15 +12,17 @@ class HomeController {
 
         if(isset($_POST['submit'])){
 
-            if($_POST['customerId'] !== 'Choose one' && $_POST['productId'] !== 'Choose Product'){
+            if($_POST['customerId'] !== 'Choose one' && $_POST['productId'] !== 'Choose Product' && $_POST['quantity'] !== 'Choose Product'){
 
                 $customerId = $dataSource->retrieveCustomer($_POST['customerId']);
                 $productId = $dataSource->retrieveProduct($_POST['productId']);
                 $allRelatedGroups = $dataSource->retrieveAllRelatedGroups($customerId['group_id']);
+                $quantity = $_POST['quantity'];
 
-                $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId);    
+                $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId, $quantity);
                 
                 $priceCalculator->findBetterDiscount();
+                var_dump($quantity);
 
             }
             

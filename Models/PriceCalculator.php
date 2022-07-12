@@ -5,12 +5,14 @@ class priceCalculator
 
     private User $user;
     private Product $product;
+    private Quantity $quantity;
 
-    public function __construct(array $userDataRow, array $related_groups, array $productDataRow)
+    public function __construct(array $userDataRow, array $related_groups, array $productDataRow, int $quantity)
     {
 
         $this->user = new User($userDataRow, $related_groups);
         $this->product = new Product($productDataRow);
+        $this->quantity = new Quantity($quantity);
 
     }
 
@@ -88,6 +90,8 @@ class priceCalculator
         $finalVariableDiscount = round(($this->product->getProductPrice() / 100)) - round((($this->product->getProductPrice() / 100) * $this->user->getVariableDiscount()) / 100);
 
     }
+
+
 }
 
 
