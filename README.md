@@ -149,6 +149,31 @@ $finalPrice = 0;
 ```
 * [x] show details in the view
 ```
+    public function getBaseInfo(){
 
+        $customerName = $this->user->getFullName();
+        $productName = $this->product->getName();
+
+        $baseProductPrice = $this->product->getProductPrice() / 100;
+        $quantity = $this->quantity->getQuantity();
+
+        $customerFixed = $this->user->getFixedDiscount();
+        $customerVariable = $this->user->getVariableDiscount();
+
+        $totalGroupFixed = $this->getAllFixedDiscounts();
+        $highestGroupVariable = $this->getHighestVariableDiscounts();
+
+
+
+        $baseInfo = ["baseProductPrice" => $baseProductPrice, "quantity" => $quantity, "customerFixed" => $customerFixed, "customerVariable" => $customerVariable, "totalGroupFixed" => $totalGroupFixed, "highestGroupVariable" => $highestGroupVariable, "customerName" => $customerName, "productName" => $productName];
+        foreach($baseInfo as $key => $info){
+            if(!$info){
+                $baseInfo[$key] = "N/A";
+            }
+        }
+
+        return $baseInfo;
+
+    }
 ```
 * [x] adding quantity
