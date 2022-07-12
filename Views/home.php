@@ -12,8 +12,8 @@ var_dump($dummyInfo);
 
 <div class="container">
     <form method="post">
-        <div class="form-row">
-            <div class="col-md-3 mb-3">
+        <div class="form-row p-1">
+            <div class="col-md-3">
                 <select class="custom-select" name='customerId'>
                     <option selected="selected">Customer</option>
                     <?php
@@ -25,7 +25,7 @@ var_dump($dummyInfo);
                     ?>
                 </select>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4">
                 <select class="custom-select" name='productId'>
                     <option selected="selected">Product</option>
                     <?php
@@ -38,7 +38,7 @@ var_dump($dummyInfo);
                     ?>
                 </select>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-3">
                 <select class="custom-select" name='quantity'>
                     <option selected="selected">Quantity</option>
                     <?php
@@ -48,7 +48,7 @@ var_dump($dummyInfo);
                     ?>
                 </select>
             </div>
-            <div>
+            <div class="m-1">
                 <button class="btn btn-primary" type="submit" value="Submit" name="submit">Calculate</button>
             </div>
         </div>

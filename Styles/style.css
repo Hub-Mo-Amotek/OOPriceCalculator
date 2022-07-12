@@ -16,6 +16,11 @@ form {
   border-radius: 5px;
 }
 
+.form-row {
+  display: flex;
+  align-items: center;
+}
+
 .container {
   height: 100%;
   display: flex;
