@@ -123,6 +123,32 @@ To calculate the price:
   ```
 - [x] First subtract fixed amounts, then percentages!
       A price can never be negative.
+```
+    public function finalCalculation()
+    {
 
+$finalPrice = 0;
+
+        $productPrice = ($this->product->getProductPrice() / 100);
+        if ($this->user->getFixedDiscount()) {
+            $firstFixed = $productPrice - $this->user->getFixedDiscount();
+            $finalPrice = $firstFixed - $this->findBetterDiscount();
+            $finalPrice = round($finalPrice);
+        }else {
+            $finalVariableGroupsDiscount = round($this->findBetterDiscount());
+            $finalPrice = round($productPrice - $this->findBetterDiscount());
+        }
+
+        if($finalPrice < 0) {
+            $finalPrice = 0;
+        }
+        
+        return $finalPrice * $this->quantity->getQuantity();
+
+    }
+```
 * [x] show details in the view
+```
+
+```
 * [x] adding quantity
