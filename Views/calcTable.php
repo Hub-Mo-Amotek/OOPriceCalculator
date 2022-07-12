@@ -16,7 +16,7 @@
                         Customer Name
                     </td>
                     <td>
-                        <?php echo '$ ' . $baseInfo['baseProductPrice']; ?>
+                        <?php echo $baseInfo['customerName']; ?>
                     </td>
                 </tr>
                 <tr>
@@ -24,7 +24,7 @@
                         Product Name
                     </td>
                     <td>
-                        <?php echo '$ ' . $baseInfo['baseProductPrice']; ?>
+                        <?php echo $baseInfo['productName']; ?>
                     </td>
                 </tr>
                 <tr>

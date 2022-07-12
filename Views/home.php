@@ -5,8 +5,7 @@ include 'Views/include/header.php';
 
 <?php
 
-// $dummyInfo = ["productPrice" => 1234, "amount" => 5, "highestGroupVariable" => 32, "totalGroupFixed" => 32, "customerOwnVariable" => NULL, "customerOwnFixed" => 10, "finalPrice" => 251];
-// var_dump($dummyInfo);
+ //var_dump($productNames); 
 
 ?>
 
@@ -16,26 +15,21 @@ include 'Views/include/header.php';
             <div class="col-md-3">
                 <select class="custom-select" name='customerId'>
                     <option selected="selected">Customer</option>
-                    <?php
-                    // A sample product array
-                    // Iterating through the product array
-                    foreach($customerNames as $item){
-                    echo "<option value='$item->id'>$item->name</option>";
-                    }
-                    ?>
+                    <?php foreach($customerNames as $customer): ?>
+
+                        <option value='<?= $customer->getId(); ?>'> <?= $customer->getFullName(); ?> </option>
+                    
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="col-md-4">
                 <select class="custom-select" name='productId'>
                     <option selected="selected">Product</option>
-                    <?php
-                    // A sample product array
-                    // Iterating through the product array
-                    foreach($productNames as $item){
-                    $price = $item->price / 100;
-                    echo "<option value='$item->id'>$item->name - $ $price</option>";
-                    }
-                    ?>
+                    <?php foreach($productNames as $product): ?>
+
+                        <option value='<?= $product->getId(); ?>'> <?= $product->getName()?> - $ <?= $product->getProductPrice() / 100; ?> </option>
+
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="col-md-2">
