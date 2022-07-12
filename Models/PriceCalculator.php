@@ -45,7 +45,7 @@ class priceCalculator
 
             }
         }
-        
+
         return $highestVariable;
 
     }
@@ -84,12 +84,10 @@ class priceCalculator
         if ($this->user->getFixedDiscount()) {
             $firstFixed = $productPrice - $this->user->getFixedDiscount();
             $finalPrice = $firstFixed - $this->findBetterDiscount();
-            var_dump($finalPrice);
-            return $finalPrice;
+            return round($finalPrice);
         }else {
             $finalVariableGroupsDiscount = round($this->findBetterDiscount());
-            var_dump($finalVariableGroupsDiscount);
-            return $this->findBetterDiscount();
+            return round($productPrice - $this->findBetterDiscount());
         }
 
         //$finalFixedDiscount = round(($this->product->getProductPrice() / 100) - $this->user->getFixedDiscount());

@@ -19,11 +19,9 @@ class HomeController {
                 $quantity = $_POST['quantity'];
 
                 $priceCalculator = new priceCalculator($customerId, $allRelatedGroups, $productId, $quantity);
-                
+
                 $baseInfo = $priceCalculator->getBaseInfo();
-
-                $priceCalculator->finalCalculation();
-
+                $finalResult = $priceCalculator->finalCalculation();
 
             }
             
