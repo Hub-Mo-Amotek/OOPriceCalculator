@@ -3,12 +3,19 @@ declare(strict_types=1);
 include 'Views/include/header.php';
 ?>
 
+<?php
+
+$dummyInfo = ["productPrice" => 1234, "amount" => 5, "highestGroupVariable" => 32, "totalGroupFixed" => 32, "customerOwnVariable" => NULL, "customerOwnFixed" => 10, "finalPrice" => 251];
+var_dump($dummyInfo);
+
+?>
+
 <div class="container">
     <form method="post">
         <div class="form-row">
-            <div class="col-md-5 mb-3">
+            <div class="col-md-3 mb-3">
                 <select class="custom-select" name='customerId'>
-                    <option selected="selected">Choose one</option>
+                    <option selected="selected">Customer</option>
                     <?php
                     // A sample product array
                     // Iterating through the product array
@@ -18,9 +25,9 @@ include 'Views/include/header.php';
                     ?>
                 </select>
             </div>
-            <div class="col-md-5 mb-3">
+            <div class="col-md-4 mb-3">
                 <select class="custom-select" name='productId'>
-                    <option selected="selected">Choose Product</option>
+                    <option selected="selected">Product</option>
                     <?php
                     // A sample product array
                     // Iterating through the product array
@@ -31,9 +38,9 @@ include 'Views/include/header.php';
                     ?>
                 </select>
             </div>
-            <div class="col-md-5 mb-3">
+            <div class="col-md-3 mb-3">
                 <select class="custom-select" name='quantity'>
-                    <option selected="selected">Choose Product</option>
+                    <option selected="selected">Quantity</option>
                     <?php
                     for($i=1;$i<=100;$i++)  {
                         echo "<option value='$i'>$i</option>";
