@@ -84,6 +84,6 @@ retrieving all the related groups:
         }
     }
 `````
-* [] In case both customer and customer group have a percentage, take the largest percentage.
-* [] First subtract fixed amounts, then percentages!
+* [x] In case both customer and customer group have a percentage, take the largest percentage.
+* [x] First subtract fixed amounts, then percentages!
      A price can never be negative.
