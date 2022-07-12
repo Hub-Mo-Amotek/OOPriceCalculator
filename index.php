@@ -7,11 +7,11 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 //Require Models
-require 'Models/DataSource.php';
 require 'Models/User.php';
 require 'Models/Product.php';
 require 'Models/PriceCalculator.php';
 require 'Models/Quantity.php';
+require 'Models/DataSource.php';
 
 //Require Controllers
 require 'Controllers/HomeController.php';
