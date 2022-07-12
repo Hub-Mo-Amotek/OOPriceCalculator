@@ -19,4 +19,4 @@ require 'Controllers/HomeController.php';
 $controller = new HomeController();
 
 //Tell the controller to display a view by calling the render function
-$controller->render();
+$controller->render($_GET, $_POST);
