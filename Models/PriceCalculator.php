@@ -52,22 +52,29 @@ class priceCalculator
     {
             //Look which discount (fixed or variable) will give the customer the most value.
             //TODO: find if the group variable discount or group fixed discount is better
-            $productPrice = $this->product->getProductPrice() / 100;
+            $productPrice = ($this->product->getProductPrice() / 100);
             
             $highestDiscountVariable = $this->getHighestVariableDiscounts();
-            if($highestDiscountVariable < $this->user->getVariableDiscount()) {
+            $discountableFixed = $this->getAllFixedDiscounts();
+
+        if($highestDiscountVariable < $this->user->getVariableDiscount()) {
                 $highestDiscountVariable = $this->user->getVariableDiscount();
             }
 
-            $discountableFixed = $this->getAllFixedDiscounts();
-            $priceWithFixedDiscount = $productPrice - $discountableFixed;
-            
-            var_dump(round($priceWithFixedDiscount - $priceWithFixedDiscount * $highestDiscountVariable / 100 ));
-            return round($priceWithFixedDiscount - $priceWithFixedDiscount * $highestDiscountVariable / 100 );
+
+        $calculatedpriceFixed = $productPrice - $discountableFixed;
+        $gettingVariablePercentage = ($productPrice * $highestDiscountVariable) /100;
+        $calculatedPriceVariable = $productPrice - $gettingVariablePercentage;
+        //$priceWithBestDiscount = $productPrice - $discountableFixed;
+        if($calculatedPriceVariable > $calculatedpriceFixed){
+            return $calculatedpriceFixed;
+        }else {
+            return $gettingVariablePercentage;
+        }
 
     }
     
-    public function getHighestFixedDiscountCustomer()
+    /*public function getHighestFixedDiscountCustomer()
     {
         $compareFixedDiscount = $this->getAllFixedDiscounts();
         if ($this->user->getFixedDiscount() > $compareFixedDiscount) {
@@ -76,16 +83,27 @@ class priceCalculator
             return $compareFixedDiscount;
         }
     }
-
+*/
     public function finalCalculation()
     {
 
         //TODO: with the info we have, make the right calculations
         //Now look at the discount of the customer.
+        $productPrice = ($this->product->getProductPrice() / 100);
+        if ($this->user->getFixedDiscount()) {
+            $firstFixed = $productPrice - $this->user->getFixedDiscount();
+            $finalPrice = $firstFixed - $this->findBetterDiscount();
+            var_dump($finalPrice);
+            return $finalPrice;
+        }else {
+            $finalVariableGroupsDiscount = round($this->findBetterDiscount());
+            var_dump($finalVariableGroupsDiscount);
+            return $this->findBetterDiscount();
+        }
 
-        $finalPriceGroups = $this->findBetterDiscount();
-        $finalFixedDiscount = round(($this->product->getProductPrice() / 100) - $this->user->getFixedDiscount());
-        $finalVariableDiscount = round(($this->product->getProductPrice() / 100)) - round((($this->product->getProductPrice() / 100) * $this->user->getVariableDiscount()) / 100);
+
+        //$finalFixedDiscount = round(($this->product->getProductPrice() / 100) - $this->user->getFixedDiscount());
+        //$finalVariableDiscount = round(($this->product->getProductPrice() / 100)) - round((($this->product->getProductPrice() / 100) * $this->user->getVariableDiscount()) / 100);
 
     }
 }
