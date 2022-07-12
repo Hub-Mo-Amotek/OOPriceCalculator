@@ -95,5 +95,34 @@ To calculate the price:
 ```
 
 - [x] In case both customer and customer group have a percentage, take the largest percentage.
+- ```
+      public function findBetterDiscount()
+    {
+
+        $productPrice = ($this->product->getProductPrice() / 100);
+            
+        $highestDiscountVariable = $this->getHighestVariableDiscounts();
+        $discountableFixed = $this->getAllFixedDiscounts();
+
+        if($highestDiscountVariable < $this->user->getVariableDiscount()) {
+                $highestDiscountVariable = $this->user->getVariableDiscount();
+            }
+
+
+        $calculatedpriceFixed = $productPrice - $discountableFixed;
+        $gettingVariablePercentage = ($productPrice * $highestDiscountVariable) /100;
+        $calculatedPriceVariable = $productPrice - $gettingVariablePercentage;
+        //$priceWithBestDiscount = $productPrice - $discountableFixed;
+        if($calculatedPriceVariable > $calculatedpriceFixed){
+            return $calculatedpriceFixed;
+        }else {
+            return $gettingVariablePercentage;
+        }
+
+    }
+  ```
 - [x] First subtract fixed amounts, then percentages!
       A price can never be negative.
+
+* [x] show details in the view
+* [x] adding quantity
