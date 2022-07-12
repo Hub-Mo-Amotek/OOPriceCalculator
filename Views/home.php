@@ -38,7 +38,7 @@ var_dump($dummyInfo);
                     ?>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <select class="custom-select" name='quantity'>
                     <option selected="selected">Quantity</option>
                     <?php
@@ -53,6 +53,9 @@ var_dump($dummyInfo);
             </div>
         </div>
     </form>
+    
+    <?php include 'Views/calcTable.php' ?>
+
 </div>
 <?php
 include 'Views/include/footer.php';
